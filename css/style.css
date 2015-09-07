@@ -1,0 +1,110 @@
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans:400);
+html,
+body {
+  font-family: 'Noto Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 100%;
+  min-height: 2000px;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+#headertop {
+  position: relative;
+}
+#home {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  background: url(../img/background-banner.jpg) no-repeat center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#home .homecontainer {
+  text-align: center;
+}
+#home .homecontainer .description * {
+  font-weight: 400;
+  color: #f4f4f4;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.75);
+}
+#home .homecontainer .description span {
+  background-color: rgba(43, 154, 206, 0.35);
+}
+#home .homecontainer .nextItem {
+  position: relative;
+  top: 20px;
+}
+#home .homecontainer .nextItem span {
+  color: #f4f4f4;
+  font-size: 24px;
+}
+#about {
+  padding-top: 65px;
+}
+#about .container .img {
+  margin: 0 10px 10px 0;
+}
+#portfolio {
+  padding-top: 65px;
+}
+#portfolio .container {
+  background: #f8f8f8;
+  border-radius: 5px;
+  padding: 10px;
+}
+#portfolio .container .portfolioItem {
+  float: left;
+  background: #e7e7e7;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
+#portfolio .container .portfolioItem .glyphicon {
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute !important;
+  top: auto !important;
+  font-size: 20px;
+  padding: 3px;
+}
+#portfolio .container .portfolioItem img:hover {
+  cursor: pointer;
+}
+/* Extra small devices (phones, less than 768px) */
+@media (max-width: 768px) {
+  #home .description {
+    bottom: 90px;
+  }
+  #about {
+    padding-top: 15px;
+  }
+  #about .container img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #portfolio {
+    padding-top: 15px;
+  }
+  #portfolio .container .portfolioItem {
+    padding: 5px;
+    margin: 0px;
+  }
+  #portfolio .container img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+/* Small devices (tablets, 768px and up) */
+/* Medium devices (desktops, 992px and up) */
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  #home .description {
+    bottom: 175px;
+  }
+  #about .container .text {
+    padding-top: 13px;
+  }
+}

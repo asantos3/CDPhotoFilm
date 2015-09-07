@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Photography & Film</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-heart-empty"></span> Photo & Film</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <li><a href="#about"><span class="glyphicon glyphicon-user"></span> About</a></li>
+                    <li><a href="#portfolio"><span class="glyphicon glyphicon-briefcase"></span> Portfolio</a></li>
+                    <li><a href="#services"><span class="glyphicon glyphicon-wrench"></span> Services</a></li>
+                    <li><a href="#contact"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span> Other <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+        </div>
+        </div>
+    </div>
+
+    <section id="home">
+        <div class="homecontainer">
+          <div class="description">
+              <h1><span>John C. Doe</span><br>
+                  <small><span>Photographer & Filmmaker</span></small>
+              </h1>
+              <h6><a href="https://www.flickr.com/photos/97238650@N08/15739313749">This image was provided by Merton Wilton via flickr <small>(CC BY-NC 2.0)</small>.</a></h6>
+          </div>
+          <div class="nextItem">
+            <a href="#about"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>
+          </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="img col-sm-3"><img src="img/profile.jpg" alt="Viktor L. Andersen Picture" class="img-responsive img-rounded"></div>
+                <div class="text col-sm-8">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae, non, velit consequuntur id possimus assumenda unde ex eos enim. Similique, sapiente obcaecati quia suscipit consectetur temporibus asperiores sint commodi distinctio fugiat cum sequi fuga voluptates. Itaque, explicabo nihil neque ratione labore quam laboriosam hic sunt exercitationem deleniti? Laudantium, sit, odio.</p>
+                    <p>Repellat, delectus veniam molestias inventore qui aliquid aliquam. Praesentium, deserunt ullam repudiandae soluta rerum dolor saepe molestias quia vitae tenetur consectetur velit debitis laboriosam ad in minima odio officia aperiam eum sunt omnis illum possimus provident facere laudantium. Officiis, architecto deserunt neque ullam voluptates accusantium nulla amet quidem pariatur nostrum.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container"></div>
+
+        <div class="modal fade bs-example-modal-lg" id="modalPortfolio" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js" ></script>
+    <script  type="text/javascript" src="js/smoothscroll.min.js"></script>
+    <script>
+        //viewport units don't work on all browsers and this is just an temporary away around
+        $('#home').css("height", $(window).height());
+
+        //smooth scroll for the menu navigation
+        var $root = $('html, body');
+        $('a').click(function() {
+            $root.animate({
+                scrollTop: $( $.attr(this, 'href') ).offset().top
+            }, 1000);
+            return false;
+        });
+
+        // Using API's to feed the gallery portfolio
+        // TODO
+          // add support to load the next photos/videos
+          // add support to filter by type
+        var gallery = [];
+        $.when(
+            //get the info by json
+            $.getJSON("https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=0eef08e12a3337bc8c801978c3adfb2f&user_id=9980034@N06&extras=url_n%2C+url_o%2C+date_upload&format=json&nojsoncallback=1", {
+                format: "json"
+            }),
+            //vimeo user      http://vimeo.com/api/v2/USERNAME/videos.json
+            //vimeo channel   http://vimeo.com/api/v2/channel/CHANNELNAME/videos.json
+            $.getJSON("http://vimeo.com/api/v2/channel/documentaryfilm/videos.json")
+        ).then(function (res1, res2) {
+            //push images from flickr to gallery array
+            $.each(res1[0].photos.photo, function (i, item) {
+                var dateupload = parseInt(item.dateupload);
+                gallery.push({type: "img", url: item.url_o, thumb_url: item.url_n, date: dateupload, title: item.title, width: item.width_n, height: item.height_n});
+            })
+            //push videos from flickr to gallery array
+            $.each(res2[0], function (i, item) {
+                var upload_date = Date.parse(item.upload_date.substring(0, 10) + "T" + item.upload_date.substring(11))/1000;
+                gallery.push({type: "vid", url: item.url, thumb_url: item.thumbnail_medium, date: upload_date, title: item.title, width: 200, height: 150});
+            })
+            //sort gallery by date
+            gallery = gallery.sort(function(a,b) {
+              return b.date - a.date;
+            });
+            $.each(gallery, function (i, item) {
+                if(i >= 20)
+                    return false;
+                else{
+                    ratio = Math.min(200/item.width, 150/item.height);
+                    if(item.height*ratio <= 150)
+                        var margin_bottom = Math.ceil(150-item.height*ratio)+10;
+                    if(item.type == "vid"){
+                        $("#portfolio .container").append("<div class='portfolioItem' style='margin-bottom:"+margin_bottom+"px'><span class='glyphicon glyphicon-play-circle'></span><img data-itemOrder='"+i+"' src='"+item.thumb_url+"' width='"+item.width*ratio+"px' height='"+item.height*ratio+"px' alt='"+item.title+"'></div>");
+                    }
+                    if(item.type == "img"){
+                        $("#portfolio .container").append("<div class='portfolioItem' style='margin-bottom:"+margin_bottom+"px'><span class='glyphicon glyphicon-camera'></span><img data-itemOrder='"+i+"' src='"+item.thumb_url+"' width='"+item.width*ratio+"px' height='"+item.height*ratio+"px' alt='"+item.title+"'></div>");
+                    }
+                }
+            });
+        });
+
+        $('#portfolio').delegate('img', 'click', function() {
+            var i = parseInt($(this).attr('data-itemOrder'));
+
+            $('#modalPortfolio').on('show.bs.modal', function (e) {
+              $('#modalPortfolio .modal-title').html(gallery[i].title);
+                if(gallery[i].type == "vid"){
+                    $('#modalPortfolio .modal-body').html('<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://player.vimeo.com/video'+gallery[i].url.substring(17)+'?title=0&amp;byline=0&amp;portrait=0" width="500" height="250" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>');
+                }
+                if(gallery[i].type == "img"){
+                    $('#modalPortfolio .modal-body').html('<img src="'+gallery[i].url+'" class="img-responsive" alt="'+gallery[i].title+'">');
+                }
+            })
+
+             $('#modalPortfolio').on('hide.bs.modal', function (e) {
+                 $('#modalPortfolio .modal-title').html('');
+                 $('#modalPortfolio .modal-body').html('');
+             })
+
+            $('#modalPortfolio').modal('show');
+        });
+    </script>
+</body>
+</html>
